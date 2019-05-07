@@ -1,0 +1,104 @@
+{
+    "type": "object",
+    "properties": {
+        "deviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Represents the base class for all object models.",
+                    "properties": {
+                        "id": {
+                            "description": "The path ID that uniquely identifies the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The object name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The hierarchical type of the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "The bandwidth schedule details.",
+            "properties": {
+                "properties": {
+                    "description": "The properties of the bandwidth schedule.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "days": {
+                            "description": "The days of the week when this schedule is applicable.",
+                            "items": {
+                                "enum": [
+                                    "Sunday",
+                                    "Monday",
+                                    "Tuesday",
+                                    "Wednesday",
+                                    "Thursday",
+                                    "Friday",
+                                    "Saturday"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": true,
+                                    "name": "DayOfWeek"
+                                }
+                            },
+                            "type": "array"
+                        },
+                        "rateInMbps": {
+                            "description": "The bandwidth rate in Mbps.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "start": {
+                            "description": "The start time of the schedule in UTC.",
+                            "type": "string"
+                        },
+                        "stop": {
+                            "description": "The stop time of the schedule in UTC.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "start",
+                        "stop",
+                        "rateInMbps",
+                        "days"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

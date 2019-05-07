@@ -1,0 +1,127 @@
+{
+    "type": "object",
+    "properties": {
+        "deviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Represents the base class for all object models.",
+                    "properties": {
+                        "id": {
+                            "description": "The path ID that uniquely identifies the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The object name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The hierarchical type of the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "Represents a user who has access to one or more shares on the Data Box Edge/Gateway device.",
+            "properties": {
+                "properties": {
+                    "description": "The storage account credential properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "encryptedPassword": {
+                            "description": "The password details.",
+                            "properties": {
+                                "encryptionAlgorithm": {
+                                    "description": "The algorithm used to encrypt \"Value\".",
+                                    "enum": [
+                                        "None",
+                                        "AES256",
+                                        "RSAES_PKCS1_v_1_5"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "EncryptionAlgorithm"
+                                    }
+                                },
+                                "encryptionCertThumbprint": {
+                                    "description": "Thumbprint certificate used to encrypt \\\"Value\\\". If the value is unencrypted, it will be null.",
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "description": "The value of the secret.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "value",
+                                "encryptionAlgorithm"
+                            ],
+                            "type": "object"
+                        },
+                        "shareAccessRights": {
+                            "description": "List of shares that the user has rights on. This field should not be specified during user creation.",
+                            "items": {
+                                "description": "Specifies the mapping between this particular user and the type of access he has on shares on this device.",
+                                "properties": {
+                                    "accessType": {
+                                        "description": "Type of access to be allowed on the share for this user.",
+                                        "enum": [
+                                            "Change",
+                                            "Read",
+                                            "Custom"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": true,
+                                            "name": "ShareAccessType"
+                                        }
+                                    },
+                                    "shareId": {
+                                        "description": "The share ID.",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "shareId",
+                                    "accessType"
+                                ],
+                                "type": "object"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

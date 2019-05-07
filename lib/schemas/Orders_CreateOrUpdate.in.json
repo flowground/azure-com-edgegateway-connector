@@ -1,0 +1,284 @@
+{
+    "type": "object",
+    "properties": {
+        "deviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Represents the base class for all object models.",
+                    "properties": {
+                        "id": {
+                            "description": "The path ID that uniquely identifies the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The object name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The hierarchical type of the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "The order details.",
+            "properties": {
+                "properties": {
+                    "description": "The order properties.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "contactInformation": {
+                            "description": "The contact details.",
+                            "properties": {
+                                "companyName": {
+                                    "description": "The name of the company.",
+                                    "type": "string"
+                                },
+                                "contactPerson": {
+                                    "description": "The contact person name.",
+                                    "type": "string"
+                                },
+                                "emailList": {
+                                    "description": "The email list.",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "phone": {
+                                    "description": "The phone number.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "contactPerson",
+                                "companyName",
+                                "phone",
+                                "emailList"
+                            ],
+                            "type": "object"
+                        },
+                        "currentStatus": {
+                            "description": "Current status of the order.",
+                            "properties": {
+                                "comments": {
+                                    "description": "Comments related to this status change.",
+                                    "type": "string"
+                                },
+                                "status": {
+                                    "description": "Status of the order as per the allowed status types.",
+                                    "enum": [
+                                        "Untracked",
+                                        "AwaitingFulfilment",
+                                        "AwaitingPreparation",
+                                        "AwaitingShipment",
+                                        "Shipped",
+                                        "Arriving",
+                                        "Delivered",
+                                        "ReplacementRequested",
+                                        "LostDevice",
+                                        "Declined",
+                                        "ReturnInitiated",
+                                        "AwaitingReturnShipment",
+                                        "ShippedBack",
+                                        "CollectedAtMicrosoft"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "OrderState"
+                                    }
+                                },
+                                "updateDateTime": {
+                                    "description": "Time of status update.",
+                                    "format": "date-time",
+                                    "readOnly": true,
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "status"
+                            ],
+                            "type": "object"
+                        },
+                        "deliveryTrackingInfo": {
+                            "description": "Tracking information for the package delivered to the customer whether it has an original or a replacement device.",
+                            "items": {
+                                "description": "Tracking courier information.",
+                                "properties": {
+                                    "carrierName": {
+                                        "description": "Name of the carrier used in the delivery.",
+                                        "type": "string"
+                                    },
+                                    "serialNumber": {
+                                        "description": "Serial number of the device being tracked.",
+                                        "type": "string"
+                                    },
+                                    "trackingId": {
+                                        "description": "Tracking ID of the shipment.",
+                                        "type": "string"
+                                    },
+                                    "trackingUrl": {
+                                        "description": "Tracking URL of the shipment.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "orderHistory": {
+                            "description": "List of status changes in the order.",
+                            "items": {
+                                "description": "Represents a single status change.",
+                                "properties": {
+                                    "comments": {
+                                        "description": "Comments related to this status change.",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Status of the order as per the allowed status types.",
+                                        "enum": [
+                                            "Untracked",
+                                            "AwaitingFulfilment",
+                                            "AwaitingPreparation",
+                                            "AwaitingShipment",
+                                            "Shipped",
+                                            "Arriving",
+                                            "Delivered",
+                                            "ReplacementRequested",
+                                            "LostDevice",
+                                            "Declined",
+                                            "ReturnInitiated",
+                                            "AwaitingReturnShipment",
+                                            "ShippedBack",
+                                            "CollectedAtMicrosoft"
+                                        ],
+                                        "type": "string",
+                                        "x-ms-enum": {
+                                            "modelAsString": true,
+                                            "name": "OrderState"
+                                        }
+                                    },
+                                    "updateDateTime": {
+                                        "description": "Time of status update.",
+                                        "format": "date-time",
+                                        "readOnly": true,
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "status"
+                                ],
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "returnTrackingInfo": {
+                            "description": "Tracking information for the package returned from the customer whether it has an original or a replacement device.",
+                            "items": {
+                                "description": "Tracking courier information.",
+                                "properties": {
+                                    "carrierName": {
+                                        "description": "Name of the carrier used in the delivery.",
+                                        "type": "string"
+                                    },
+                                    "serialNumber": {
+                                        "description": "Serial number of the device being tracked.",
+                                        "type": "string"
+                                    },
+                                    "trackingId": {
+                                        "description": "Tracking ID of the shipment.",
+                                        "type": "string"
+                                    },
+                                    "trackingUrl": {
+                                        "description": "Tracking URL of the shipment.",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "serialNumber": {
+                            "description": "Serial number of the device.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "shippingAddress": {
+                            "description": "The shipping address.",
+                            "properties": {
+                                "addressLine1": {
+                                    "description": "The address line1.",
+                                    "type": "string"
+                                },
+                                "addressLine2": {
+                                    "description": "The address line2.",
+                                    "type": "string"
+                                },
+                                "addressLine3": {
+                                    "description": "The address line3.",
+                                    "type": "string"
+                                },
+                                "city": {
+                                    "description": "The city name.",
+                                    "type": "string"
+                                },
+                                "country": {
+                                    "description": "The country name.",
+                                    "type": "string"
+                                },
+                                "postalCode": {
+                                    "description": "The postal code.",
+                                    "type": "string"
+                                },
+                                "state": {
+                                    "description": "The state name.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "addressLine1",
+                                "postalCode",
+                                "city",
+                                "state",
+                                "country"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "contactInformation",
+                        "shippingAddress"
+                    ],
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

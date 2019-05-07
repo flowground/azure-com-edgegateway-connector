@@ -1,0 +1,848 @@
+{
+    "title": "DataBoxEdgeManagementClient",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/edgegateway/2019-03-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "Operations_List": {
+            "main": "./lib/actions/Operations_List.js",
+            "title": "List all the supported operations.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Operations_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_ListBySubscription": {
+            "main": "./lib/actions/Devices_ListBySubscription.js",
+            "title": "Gets all the data box edge/gateway devices in a subscription.",
+            "description": "Gets all the data box edge/gateway devices in a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_ListBySubscription.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_ListByResourceGroup": {
+            "main": "./lib/actions/Devices_ListByResourceGroup.js",
+            "title": "Gets all the data box edge/gateway devices in a resource group.",
+            "description": "Gets all the data box edge/gateway devices in a resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_Delete": {
+            "main": "./lib/actions/Devices_Delete.js",
+            "title": "Deletes the data box edge/gateway device.",
+            "description": "Deletes the data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_Get": {
+            "main": "./lib/actions/Devices_Get.js",
+            "title": "Gets the properties of the data box edge/gateway device.",
+            "description": "Gets the properties of the data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_Update": {
+            "main": "./lib/actions/Devices_Update.js",
+            "title": "Modifies a Data Box Edge/Gateway resource.",
+            "description": "Modifies a Data Box Edge/Gateway resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_Update.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_CreateOrUpdate": {
+            "main": "./lib/actions/Devices_CreateOrUpdate.js",
+            "title": "Creates or updates a Data Box Edge/Gateway resource.",
+            "description": "Creates or updates a Data Box Edge/Gateway resource.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Alerts_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/Alerts_ListByDataBoxEdgeDevice.js",
+            "title": "Gets all the alerts for a data box edge/gateway device.",
+            "description": "Gets all the alerts for a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Alerts_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Alerts_Get": {
+            "main": "./lib/actions/Alerts_Get.js",
+            "title": "Gets an alert by name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Alerts_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BandwidthSchedules_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/BandwidthSchedules_ListByDataBoxEdgeDevice.js",
+            "title": "Gets all the bandwidth schedules for a data box edge/gateway device.",
+            "description": "Gets all the bandwidth schedules for a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BandwidthSchedules_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BandwidthSchedules_Delete": {
+            "main": "./lib/actions/BandwidthSchedules_Delete.js",
+            "title": "Deletes the specified bandwidth schedule.",
+            "description": "Deletes the specified bandwidth schedule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BandwidthSchedules_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BandwidthSchedules_Get": {
+            "main": "./lib/actions/BandwidthSchedules_Get.js",
+            "title": "Gets the properties of the specified bandwidth schedule.",
+            "description": "Gets the properties of the specified bandwidth schedule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BandwidthSchedules_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "BandwidthSchedules_CreateOrUpdate": {
+            "main": "./lib/actions/BandwidthSchedules_CreateOrUpdate.js",
+            "title": "Creates or updates a bandwidth schedule.",
+            "description": "Creates or updates a bandwidth schedule.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/BandwidthSchedules_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_DownloadUpdates": {
+            "main": "./lib/actions/Devices_DownloadUpdates.js",
+            "title": "Downloads the updates on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_DownloadUpdates.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_GetExtendedInformation": {
+            "main": "./lib/actions/Devices_GetExtendedInformation.js",
+            "title": "Gets additional information for the specified data box edge/gateway device.",
+            "description": "Gets additional information for the specified data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_GetExtendedInformation.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_InstallUpdates": {
+            "main": "./lib/actions/Devices_InstallUpdates.js",
+            "title": "Installs the updates on the data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_InstallUpdates.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Jobs_Get": {
+            "main": "./lib/actions/Jobs_Get.js",
+            "title": "Gets the details of a specified job on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Jobs_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_GetNetworkSettings": {
+            "main": "./lib/actions/Devices_GetNetworkSettings.js",
+            "title": "Gets the network settings of the specified data box edge/gateway device.",
+            "description": "Gets the network settings of the specified data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_GetNetworkSettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "OperationsStatus_Get": {
+            "main": "./lib/actions/OperationsStatus_Get.js",
+            "title": "Gets the details of a specified job on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/OperationsStatus_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Orders_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/Orders_ListByDataBoxEdgeDevice.js",
+            "title": "Lists all the orders related to a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Orders_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Orders_Delete": {
+            "main": "./lib/actions/Orders_Delete.js",
+            "title": "Deletes the order related to the device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Orders_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Orders_Get": {
+            "main": "./lib/actions/Orders_Get.js",
+            "title": "Gets a specific order by name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Orders_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Orders_CreateOrUpdate": {
+            "main": "./lib/actions/Orders_CreateOrUpdate.js",
+            "title": "Creates or updates an order.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Orders_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Roles_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/Roles_ListByDataBoxEdgeDevice.js",
+            "title": "Lists all the roles configured in a data box edge/gateway device.",
+            "description": "Lists all the roles configured in a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Roles_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Roles_Delete": {
+            "main": "./lib/actions/Roles_Delete.js",
+            "title": "Deletes the role on the data box edge device.",
+            "description": "Deletes the role on the data box edge device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Roles_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Roles_Get": {
+            "main": "./lib/actions/Roles_Get.js",
+            "title": "Gets a specific role by name.",
+            "description": "Gets a specific role by name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Roles_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Roles_CreateOrUpdate": {
+            "main": "./lib/actions/Roles_CreateOrUpdate.js",
+            "title": "Create or update a role.",
+            "description": "Create or update a role.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Roles_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_ScanForUpdates": {
+            "main": "./lib/actions/Devices_ScanForUpdates.js",
+            "title": "Scans for updates on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_ScanForUpdates.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_CreateOrUpdateSecuritySettings": {
+            "main": "./lib/actions/Devices_CreateOrUpdateSecuritySettings.js",
+            "title": "Updates the security settings on a data box edge/gateway device.",
+            "description": "Updates the security settings on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_CreateOrUpdateSecuritySettings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Shares_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/Shares_ListByDataBoxEdgeDevice.js",
+            "title": "Lists all the shares in a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Shares_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Shares_Delete": {
+            "main": "./lib/actions/Shares_Delete.js",
+            "title": "Deletes the share on the data box edge/gateway device.",
+            "description": "Deletes the share on the data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Shares_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Shares_Get": {
+            "main": "./lib/actions/Shares_Get.js",
+            "title": "Gets a share by name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Shares_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Shares_CreateOrUpdate": {
+            "main": "./lib/actions/Shares_CreateOrUpdate.js",
+            "title": "Creates a new share or updates an existing share on the device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Shares_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Shares_Refresh": {
+            "main": "./lib/actions/Shares_Refresh.js",
+            "title": "Refreshes the share metadata with the data from the cloud.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Shares_Refresh.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageAccountCredentials_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/StorageAccountCredentials_ListByDataBoxEdgeDevice.js",
+            "title": "Gets all the storage account credentials in a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageAccountCredentials_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageAccountCredentials_Delete": {
+            "main": "./lib/actions/StorageAccountCredentials_Delete.js",
+            "title": "Deletes the storage account credential.",
+            "description": "Deletes the storage account credential.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageAccountCredentials_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageAccountCredentials_Get": {
+            "main": "./lib/actions/StorageAccountCredentials_Get.js",
+            "title": "Gets the properties of the specified storage account credential.",
+            "description": "Gets the properties of the specified storage account credential.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageAccountCredentials_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "StorageAccountCredentials_CreateOrUpdate": {
+            "main": "./lib/actions/StorageAccountCredentials_CreateOrUpdate.js",
+            "title": "Creates or updates the storage account credential.",
+            "description": "Creates or updates the storage account credential.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/StorageAccountCredentials_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Triggers_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/Triggers_ListByDataBoxEdgeDevice.js",
+            "title": "Lists all the triggers configured in the device.",
+            "description": "Lists all the triggers configured in the device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Triggers_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Triggers_Delete": {
+            "main": "./lib/actions/Triggers_Delete.js",
+            "title": "Deletes the trigger on the gateway device.",
+            "description": "Deletes the trigger on the gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Triggers_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Triggers_Get": {
+            "main": "./lib/actions/Triggers_Get.js",
+            "title": "Get a specific trigger by name.",
+            "description": "Get a specific trigger by name.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Triggers_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Triggers_CreateOrUpdate": {
+            "main": "./lib/actions/Triggers_CreateOrUpdate.js",
+            "title": "Creates or updates a trigger.",
+            "description": "Creates or updates a trigger.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Triggers_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_GetUpdateSummary": {
+            "main": "./lib/actions/Devices_GetUpdateSummary.js",
+            "title": "Gets information about the availability of updates based on the last scan of the device. It also gets information about any ongoing download or install jobs on the device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_GetUpdateSummary.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Devices_UploadCertificate": {
+            "main": "./lib/actions/Devices_UploadCertificate.js",
+            "title": "Uploads registration certificate for the device.",
+            "description": "Uploads registration certificate for the device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Devices_UploadCertificate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_ListByDataBoxEdgeDevice": {
+            "main": "./lib/actions/Users_ListByDataBoxEdgeDevice.js",
+            "title": "Gets all the users registered on a data box edge/gateway device.",
+            "description": "Gets all the users registered on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_ListByDataBoxEdgeDevice.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_Delete": {
+            "main": "./lib/actions/Users_Delete.js",
+            "title": "Deletes the user on a databox edge/gateway device.",
+            "description": "Deletes the user on a databox edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_Get": {
+            "main": "./lib/actions/Users_Get.js",
+            "title": "Gets the properties of the specified user.",
+            "description": "Gets the properties of the specified user.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "Users_CreateOrUpdate": {
+            "main": "./lib/actions/Users_CreateOrUpdate.js",
+            "title": "Creates a new user or updates an existing user's information on a data box edge/gateway device.",
+            "description": "Creates a new user or updates an existing user's information on a data box edge/gateway device.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/Users_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

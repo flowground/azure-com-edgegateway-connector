@@ -1,0 +1,56 @@
+{
+    "type": "object",
+    "properties": {
+        "deviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "The upload certificate request.",
+            "properties": {
+                "properties": {
+                    "description": "The Base 64 encoded certificate raw data.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "authenticationType": {
+                            "description": "The authentication type.",
+                            "enum": [
+                                "Invalid",
+                                "AzureActiveDirectory"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "AuthenticationType"
+                            }
+                        },
+                        "certificate": {
+                            "description": "The base64 encoded certificate raw data.",
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "certificate"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

@@ -1,0 +1,95 @@
+{
+    "type": "object",
+    "properties": {
+        "deviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Represents the base class for all object models.",
+                    "properties": {
+                        "id": {
+                            "description": "The path ID that uniquely identifies the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The object name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The hierarchical type of the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "The security settings of a device.",
+            "properties": {
+                "properties": {
+                    "description": "Properties of the security settings.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "deviceAdminPassword": {
+                            "description": "Device administrator password as an encrypted string (encrypted using RSA PKCS #1) is used to sign into the  local web UI of the device. The Actual password should have at least 8 characters that are a combination of  uppercase, lowercase, numeric, and special characters.",
+                            "properties": {
+                                "encryptionAlgorithm": {
+                                    "description": "The algorithm used to encrypt \"Value\".",
+                                    "enum": [
+                                        "None",
+                                        "AES256",
+                                        "RSAES_PKCS1_v_1_5"
+                                    ],
+                                    "type": "string",
+                                    "x-ms-enum": {
+                                        "modelAsString": true,
+                                        "name": "EncryptionAlgorithm"
+                                    }
+                                },
+                                "encryptionCertThumbprint": {
+                                    "description": "Thumbprint certificate used to encrypt \\\"Value\\\". If the value is unencrypted, it will be null.",
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "description": "The value of the secret.",
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "value",
+                                "encryptionAlgorithm"
+                            ],
+                            "type": "object"
+                        }
+                    },
+                    "required": [
+                        "deviceAdminPassword"
+                    ],
+                    "type": "object"
+                }
+            },
+            "required": [
+                "properties"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

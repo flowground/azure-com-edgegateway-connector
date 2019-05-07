@@ -1,0 +1,203 @@
+{
+    "type": "object",
+    "properties": {
+        "deviceName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "Represents the base class for all object models.",
+                    "properties": {
+                        "id": {
+                            "description": "The path ID that uniquely identifies the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "name": {
+                            "description": "The object name.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "type": {
+                            "description": "The hierarchical type of the object.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object",
+                    "x-ms-azure-resource": true
+                }
+            ],
+            "description": "The Data Box Edge/Gateway device.",
+            "properties": {
+                "etag": {
+                    "description": "The etag for the devices.",
+                    "type": "string"
+                },
+                "location": {
+                    "description": "The location of the device. This is a supported and registered Azure geographical region (for example, West US, East US, or Southeast Asia). The geographical region of a device cannot be changed once it is created, but if an identical geographical region is specified on update, the request will succeed.",
+                    "type": "string",
+                    "x-ms-mutability": [
+                        "read",
+                        "create"
+                    ]
+                },
+                "properties": {
+                    "description": "The properties of the Data Box Edge/Gateway device.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "configuredRoleTypes": {
+                            "description": "Type of compute roles configured.",
+                            "items": {
+                                "enum": [
+                                    "IOT",
+                                    "ASA",
+                                    "Functions",
+                                    "Cognitive"
+                                ],
+                                "type": "string",
+                                "x-ms-enum": {
+                                    "modelAsString": true,
+                                    "name": "RoleTypes"
+                                }
+                            },
+                            "readOnly": true,
+                            "type": "array"
+                        },
+                        "culture": {
+                            "description": "The Data Box Edge/Gateway device culture.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "dataBoxEdgeDeviceStatus": {
+                            "description": "The status of the Data Box Edge/Gateway device.",
+                            "enum": [
+                                "ReadyToSetup",
+                                "Online",
+                                "Offline",
+                                "NeedsAttention",
+                                "Disconnected",
+                                "PartiallyDisconnected"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "DataBoxEdgeDeviceStatus"
+                            }
+                        },
+                        "description": {
+                            "description": "The Description of the Data Box Edge/Gateway device.",
+                            "type": "string"
+                        },
+                        "deviceHcsVersion": {
+                            "description": "The device software version number of the device (eg: 1.2.18105.6).",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "deviceLocalCapacity": {
+                            "description": "The Data Box Edge/Gateway device local capacity in MB.",
+                            "format": "int64",
+                            "readOnly": true,
+                            "type": "integer"
+                        },
+                        "deviceModel": {
+                            "description": "The Data Box Edge/Gateway device model.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "deviceSoftwareVersion": {
+                            "description": "The Data Box Edge/Gateway device software version.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "deviceType": {
+                            "description": "The type of the Data Box Edge/Gateway device.",
+                            "enum": [
+                                "DataBoxEdgeDevice"
+                            ],
+                            "readOnly": true,
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "DeviceType"
+                            }
+                        },
+                        "friendlyName": {
+                            "description": "The Data Box Edge/Gateway device name.",
+                            "type": "string"
+                        },
+                        "modelDescription": {
+                            "description": "The description of the Data Box Edge/Gateway device model.",
+                            "type": "string"
+                        },
+                        "serialNumber": {
+                            "description": "The Serial Number of Data Box Edge/Gateway device.",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "timeZone": {
+                            "description": "The Data Box Edge/Gateway device timezone.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "sku": {
+                    "description": "The SKU type.",
+                    "properties": {
+                        "name": {
+                            "description": "SKU name.",
+                            "enum": [
+                                "Gateway",
+                                "Edge"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuName"
+                            }
+                        },
+                        "tier": {
+                            "description": "The SKU tier. This is based on the SKU name.",
+                            "enum": [
+                                "Standard"
+                            ],
+                            "type": "string",
+                            "x-ms-enum": {
+                                "modelAsString": true,
+                                "name": "SkuTier"
+                            }
+                        }
+                    },
+                    "type": "object"
+                },
+                "tags": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "description": "The list of tags that describe the device. These tags can be used to view and group this device (across resource groups).",
+                    "type": "object"
+                }
+            },
+            "required": [
+                "location"
+            ],
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
